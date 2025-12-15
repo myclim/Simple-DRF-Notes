@@ -1,4 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +12,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l7)f2m$4!7fa5f045q4-!mx5uz!@h7f!ja(x=%qo%m&eg^e36l'
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+if SECRET_KEY is None:
+    raise ValueError("SECRET_KEY environment variable must be set")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -107,7 +115,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
