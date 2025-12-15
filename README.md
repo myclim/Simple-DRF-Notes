@@ -23,7 +23,6 @@ cd notes-api
 
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# или
 venv\Scripts\activate     # Windows
 
 📡 API Endpoints
